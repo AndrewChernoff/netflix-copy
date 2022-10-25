@@ -1,0 +1,24 @@
+.nav {
+    padding: 20px;
+    height: 30px;
+    /* background-color: black; */
+}
+
+.nav__content {
+     /* display: flex;
+    justify-content: space-between; */
+}
+
+.nav__logo {
+    position: fixed;
+    left: 20px;
+    width: 80px;
+    cursor: pointer;
+}
+
+.nav__ava {
+    position: fixed;
+    right: 20px;
+    width: 30px;
+    cursor: pointer;
+}
