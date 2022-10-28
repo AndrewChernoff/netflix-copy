@@ -8,26 +8,22 @@ import axios from 'axios';
 const Banner = () => {
 
     const [movie, setMovie] = useState(null);
-    const {getNetflixOriginals} = requests();
+
+    const getData = async() => {
+        let res = await axios.get(requests.getNetflixOriginals);
+        return res;
+    }
 
     useEffect(() => {
-        getNetflixOriginals().then((res) => setMovie(res.data.results[Math.floor(Math.random()*(res.data.results).length)]))
+        getData().then((res) => setMovie(res.data.results[Math.floor(Math.random()*(res.data.results).length)]))
     }, [])
-
-    /* const cutString = (str) => {
-        if(str.length > 30) {
-            return str.substr(0,30) + '...';
-        } else {
-            return str;
-        }
-    } */
 
     return <header className="banner" style={{
         backgroundSize: 'cover',
         backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie?.backdrop_path}')`,
         backgroundPosition: 'center 0',
     }}>
-        <Nav/>
+         <Nav/>
 
         <div className="banner__content">
 

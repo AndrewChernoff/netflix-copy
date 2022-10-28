@@ -1,58 +1,24 @@
-import axios from "axios";
-
 const API_KEY = "648525cae8c4354c1d4c4dda01506e6b";
+const BASE_URL = "https://api.themoviedb.org/3/";
 
-const requests = () => {
-  const getMovies = async() => {
-   let res = await axios.get(`https://api.themoviedb.org/3/movie/550?api_key=${API_KEY}`);
-    return res;
-  } 
+const requests = {
+  getMovies: `${BASE_URL}movie/550?api_key=${API_KEY}`,
 
-  const getTrendings = async() => {
-    let res = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`);
-    return res;
-  }
-  
-  const getNetflixOriginals = async() => {
-    let res = axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
-    return res;
-}
+  getTrendings: `${BASE_URL}trending/all/day?api_key=${API_KEY}`,
 
-const getTopRated = async() => {
-    let res = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`);
-    return res;
-}
+  getNetflixOriginals: `${BASE_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`,
 
-const getActionMovies = async() => {
-    let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=28`);
-    return res;
-}
+  getTopRated: `${BASE_URL}movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
 
-const getComedyMovies = async() => {
-    let res = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=35`
-      );
-      return res;
-}
+  getActionMovies: `${BASE_URL}discover/movie?api_key=${API_KEY}&with_genres=28`,
 
-const getHorrorMovies = async() => {
-    let res = axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=27`);
-    return res;
-}
+  getComedyMovies: `${BASE_URL}discover/movie?api_key=${API_KEY}&with_genres=35`,
 
-const getDocumentaries = async() => {
-    let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=99`);
-    return res;
-}
+  getHorrorMovies: `${BASE_URL}discover/movie?api_key=${API_KEY}&with_genres=27`,
 
-const getRomanceMovies = async() => {
-    let res = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=10749`);
-    return res;
-}
+  getDocumentaries: `${BASE_URL}discover/movie?api_key=${API_KEY}&with_genres=99`,
 
-  return { getMovies, getTrendings, getNetflixOriginals, getTopRated, getActionMovies,
-    getComedyMovies, getHorrorMovies, getDocumentaries, getRomanceMovies
- };
+  getRomanceMovies: `${BASE_URL}discover/movie?api_key=${API_KEY}&with_genres=10749`,
 };
 
 export default requests;

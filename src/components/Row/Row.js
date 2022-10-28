@@ -1,18 +1,35 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
+import "./Row.css";
 
-const Row = ({title, fetchMovies}) => {
+const Row = ({ title, fetchMovies }) => {
+  const [movies, setMovies] = useState([]);
 
-    const [movies, setMovies] = useState([]);
-    console.log(fetchMovies)
+  const getData = async () => {
+    let res = await axios.get(fetchMovies);
+    return res;
+  };
 
-    useEffect(() => {
-        /* fetchMovies
-        .then(res => setMovies(res)) */
-    }, [])
+  useEffect(() => {
+    getData().then((res) =>
+      setMovies(
+        res.data.results
+      )
+    );
+  }, []);
+  console.log(movies)
 
-    return <div className="row">
-        <h1>{title}</h1>
+  return (
+    <div className="row">
+      <h2 className="row__title">{title}</h2>
+      <div className="row__movies">
+       {movies? movies?.map((el) => {
+       return <img key={el.id} className="row__img" src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`} />
+      })
+    : <div>Loading...</div>}
     </div>
-}
+    </div>
+  );
+};
 
 export default Row;
