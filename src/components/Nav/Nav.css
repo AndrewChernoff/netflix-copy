@@ -19,6 +19,7 @@
 .nav__ava {
     position: fixed;
     right: 20px;
+    top: 45px;
     width: 30px;
     cursor: pointer;
 }

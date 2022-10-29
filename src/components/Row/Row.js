@@ -11,23 +11,31 @@ const Row = ({ title, fetchMovies }) => {
   };
 
   useEffect(() => {
-    getData().then((res) =>
-      setMovies(
-        res.data.results
-      )
-    );
+    getData().then((res) => setMovies(res.data.results));
   }, []);
-  console.log(movies)
+  console.log(movies);
 
   return (
     <div className="row">
       <h2 className="row__title">{title}</h2>
       <div className="row__movies">
-       {movies? movies?.map((el) => {
-       return <img key={el.id} className="row__img" src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`} />
-      })
-    : <div>Loading...</div>}
-    </div>
+        {movies ? (
+          movies?.map((el) => {
+            return (
+              <div className="row__movies_item">
+                <img
+                  key={el.id}
+                  className="row__img"
+                  src={`https://image.tmdb.org/t/p/original/${el.backdrop_path}`}
+                />
+                <div className="row__movie_title">{el.original_title}</div>
+              </div>
+            );
+          })
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
     </div>
   );
 };

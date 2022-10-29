@@ -1,5 +1,6 @@
 .row {
     background-color: black;
+    padding-bottom: 10px;
 }
 
 .row__title {
@@ -15,11 +16,19 @@
     overflow-x: scroll;
 }
 
+.row__movie_title {
+    text-align: center;
+    margin-top: 3px;
+    font-size: 14px;
+    color: white;
+}
+
 .row__movies::-webkit-scrollbar {
     display: none;
 }
 
 .row__img {
+    display: block;
     object-fit: contain;
     max-height: 100px;
     margin-right: 10px;
