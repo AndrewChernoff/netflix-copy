@@ -54,3 +54,8 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.signin h4 a {
+    text-decoration: none;
+    color: #fff;
+}

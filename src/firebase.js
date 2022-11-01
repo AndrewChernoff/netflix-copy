@@ -31,8 +31,8 @@ const firebaseConfig = {
 };
 
   const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
- const db = getFirestore(app);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
 
  const googleProvider = new GoogleAuthProvider();
@@ -58,7 +58,6 @@ const signInWithGoogle = async () => {
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
-    debugger
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);

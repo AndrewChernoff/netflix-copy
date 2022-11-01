@@ -9,13 +9,14 @@ import {
 import HomePage from './components/HomePage/HomePage';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
+import Reset from './components/Reset/Reset';
 
 function App() {
   let navigate = useNavigate();
 
   const user = null;
   useEffect(() => {
-   if(!user) navigate(`/login`);
+   //if(!user) navigate(`/login`);
   }, [])
 
   return (
@@ -25,11 +26,12 @@ function App() {
 
       {user?
       <>
-      <Route path="/" element={<HomePage />}/>
+      <Route path="homepage" element={<HomePage />}/>
       </>
-      : <Route path="login" element={<Login />}/>
+      : <Route path="/" element={<Login />}/>
      }
-           <Route path="/dashboard" element={<Dashboard />}/>
+           <Route path="dashboard" element={<Dashboard />}/>
+           <Route path="reset" element={<Reset />}/>
 
          </Routes>
 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignIn.css";
 
-const SignIn = () => {
+const SignIn = ({setSignUp, setSignIn}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
@@ -19,6 +19,7 @@ const SignIn = () => {
   return (
     <div className="signin">
       <form>
+      <h1>Sign In</h1>
         <input
           type="email"
           className="login__textBox"
@@ -43,7 +44,13 @@ const SignIn = () => {
           Sign In
         </button>
         <h4><span>New to Netflix?</span>
-            <span className="signin__link"> Sign Up now. </span></h4>
+            <span className="signin__link" onClick={() => {
+              setSignIn(false)
+              setSignUp(true)
+            }}> Sign Up now. </span></h4>
+          <h4>
+            <Link to="reset">Reset password</Link>
+          </h4>
       </form>
     </div>
   );
