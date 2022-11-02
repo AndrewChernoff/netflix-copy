@@ -6,11 +6,13 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import Nav from './../Nav/Nav';
 import ava from '../../utils/imgs/avatar.png';
 import './Dashboard.css'
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const currentPlan = useSelector(state => state.userProfile.tariff)
   const fetchUserName = async () => {
     try {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
@@ -28,6 +30,17 @@ const Dashboard = () => {
     fetchUserName();
   }, [user, loading]);
 
+
+  const buttons = [
+    {id: 1, tariff:'Netflix Standart' ,quality: '1080p'},
+    {id: 2, tariff:'Netflix Basic', quality: '480p'},
+    {id: 3, tariff:'Netflix Premium', quality: '4K+HDR'},
+  ]
+
+  const tariff = () => {
+    return !currentPlan? 'Not selected' : currentPlan
+  }
+
   return (
     <div className="user">
       <Nav/>
@@ -40,12 +53,21 @@ const Dashboard = () => {
           </div>
           <div className="user__payment">
             <h2 className="user__email">{user?.email}</h2>
-            <p>Plans (Current Plan: Premium)</p>
+            <p>Plans (Current Plan: {tariff()})</p>
             <hr className="user__bar"/>
             <h2 className="user__payment_renewal">Renewal Date: 24/03/2023</h2>
 
             <div className="user__tariffs">
-              <div className="user__tariffs_item">
+              {buttons.map(({id, tariff, quality}) => {
+                return <div key={id} className="user__tariffs_item">
+                <h2>
+                  {tariff}
+                 <p>{quality}</p>
+                </h2> 
+                <button>Subscribe</button>
+              </div>
+              })}
+              {/* <div className="user__tariffs_item">
                 <h2>
                   Netflix Standart
                  <p>1080p</p>
@@ -65,7 +87,7 @@ const Dashboard = () => {
                  <p>4K+HDR</p>
                 </h2> 
                 <button>Subscribe</button>
-              </div>
+              </div> */}
             </div>
             <button className="user__signout">Sign Out</button>
           </div>
