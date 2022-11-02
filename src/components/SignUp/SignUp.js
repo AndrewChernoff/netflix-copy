@@ -11,7 +11,7 @@ const SignUp = ({setSignUp, setSignIn}) => {
     const [name, setName] = useState("");
     const navigate = useNavigate();
 
-    const register = ({setSignUp, setSignIn}) => {
+    const register = () => {
         if (!name) alert("Please enter name");
         registerWithEmailAndPassword(name, email, password);
       };
@@ -31,7 +31,10 @@ const SignUp = ({setSignUp, setSignIn}) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)} type="password" required/>
             <button type="submit" 
-            onClick={register}>Sign Up</button>
+            onClick={(e) => {
+              e.preventDefault()
+              register()
+              }}>Sign Up</button>
             <h4><span>Already have an accaunt?</span>
             <span className="signin__link" onClick={() => {
               setSignUp(false)

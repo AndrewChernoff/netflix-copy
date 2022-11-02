@@ -1,0 +1,91 @@
+
+.user__content {
+    margin: 50px auto 0 auto;
+    max-width: 500px;
+    padding: 15px;
+}
+
+.user__email {
+    padding: 10px;
+    color: #fff;
+    background: grey;
+}
+
+.user__title {
+    color: white;
+    font-size: 40px;
+}
+
+.user__bar {
+    width: 100%;
+    height: 0.5px;
+    background-color: grey;
+    border: grey 0.5px solid;
+    margin: 10px 0;
+}
+
+.user__ava {
+    max-width: 65px;
+}
+
+.user__info {
+    display: flex;
+    justify-content: space-between;
+    grid-gap: 30px;
+}
+
+.user__payment {
+    width: 100%;
+    /* max-width: 390px;
+    min-width: 270px; */
+    /* background: grey; */
+}
+
+.user__payment p {
+    margin: 10px 0;
+    color: #fff;
+}
+
+.user__payment_renewal {
+    color: grey;
+}
+
+.user__tariffs {
+    margin-top: 30px;
+}
+
+.user__tariffs_item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.user__tariffs_item h2 {
+    color: #fff;
+}
+
+.user__tariffs_item h2 p {
+    margin-top: 0;
+}
+
+.user__tariffs_item button {
+    padding: 2px 25px;
+    color: #fff;
+    background: #e50914;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.user__signout {
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px 0;
+    color: #fff;
+    background: #e50914;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
