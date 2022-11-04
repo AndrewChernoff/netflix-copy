@@ -6,12 +6,14 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import Nav from './../Nav/Nav';
 import ava from '../../utils/imgs/avatar.png';
 import './Dashboard.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearUserObj, getTariff, getUserInfo } from "../../features/userSlice";
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const currentPlan = useSelector(state => state.userProfile.tariff)
   const fetchUserName = async () => {
     try {
@@ -26,8 +28,9 @@ const Dashboard = () => {
   };
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user) navigate("/");
     fetchUserName();
+    if (user)  dispatch(getUserInfo(user))
   }, [user, loading]);
 
 
@@ -59,37 +62,25 @@ const Dashboard = () => {
 
             <div className="user__tariffs">
               {buttons.map(({id, tariff, quality}) => {
-                return <div key={id} className="user__tariffs_item">
+                return <div key={id} data-tariff={tariff} className="user__tariffs_item">
                 <h2>
                   {tariff}
                  <p>{quality}</p>
                 </h2> 
-                <button>Subscribe</button>
+                <button style={currentPlan === tariff ? {background: 'grey'} : {background: '#e50914'} } onClick={() => dispatch(getTariff(tariff))}> 
+                {currentPlan === tariff? "Subscribed" : "Subscribe"}
+                </button>
               </div>
               })}
-              {/* <div className="user__tariffs_item">
-                <h2>
-                  Netflix Standart
-                 <p>1080p</p>
-                </h2> 
-                <button>Subscribe</button>
-              </div>
-              <div className="user__tariffs_item">
-                <h2>
-                  Netflix Basic
-                 <p>480p</p>
-                </h2> 
-                <button>Subscribe</button>
-              </div>
-              <div className="user__tariffs_item">
-                <h2>
-                  Netflix Premium
-                 <p>4K+HDR</p>
-                </h2> 
-                <button>Subscribe</button>
-              </div> */}
             </div>
-            <button className="user__signout">Sign Out</button>
+            <button className="user__signout" onClick={(e)=>{
+              e.preventDefault()
+              console.log(user)
+              logout()
+              dispatch(clearUserObj())
+              navigate("/");
+
+              }}>Sign Out</button>
           </div>
         </div>
       </div>

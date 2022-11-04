@@ -3,12 +3,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignIn.css";
+import { useSelector } from "react-redux";
 
 const SignIn = ({setSignUp, setSignIn}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+  //const userFromState = useSelector(state => state.userProfile.user)
+
   useEffect(() => {
     if (loading) {
       // maybe trigger a loading screen
