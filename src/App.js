@@ -16,10 +16,16 @@ function App() {
   const user = useSelector(state => state.userProfile.user)
   let navigate = useNavigate();
 
-  //const user = null;
   useEffect(() => {
    if(!user) navigate(`/`);
+   if(user) navigate(`/homepage`);
   }, [])
+
+/*   useEffect(() => {
+    console.log(window.location.pathname)
+    window.localStorage.setItem('path', window.location.pathname);
+    if(user) navigate(window.localStorage.getItem('path'));
+  }, [window.location.pathname]); */
 
   return (
 

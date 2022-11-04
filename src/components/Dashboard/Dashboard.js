@@ -67,7 +67,12 @@ const Dashboard = () => {
                   {tariff}
                  <p>{quality}</p>
                 </h2> 
-                <button style={currentPlan === tariff ? {background: 'grey'} : {background: '#e50914'} } onClick={() => dispatch(getTariff(tariff))}> 
+                <button style={currentPlan === tariff ? {background: 'grey'} : {background: '#e50914'} } 
+                disabled={currentPlan === tariff? true : false}
+                onClick={() => {
+                  dispatch(getTariff(tariff))
+                  setTimeout(() => navigate(`/homepage`), 2000);
+                  }}> 
                 {currentPlan === tariff? "Subscribed" : "Subscribe"}
                 </button>
               </div>

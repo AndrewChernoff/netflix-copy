@@ -19,6 +19,7 @@ export const userSlice = createSlice({
     },
     clearUserObj: (state) => {
       state.user = null;
+      state.tariff = null;
     }
   }
 });
